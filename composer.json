@@ -1,0 +1,18 @@
+{
+    "name": "caiotava/php-chip-8",
+    "description": "Chip-8 Emulator",
+    "license": "BSD",
+    "type": "project",
+    "require": {
+        "php": "7.2.3",
+        "ext-ncurses": "*"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^7.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "PHPEmulators\\Chip8\\": "src/"
+        }
+    }
+}

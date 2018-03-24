@@ -16,6 +16,22 @@ class Memory implements ArrayAccess, Countable, IteratorAggregate
         $this->blocks = array_fill(0, $numberOfBlocks, $defaultValue);
     }
 
+    public function copy($source, $memoryPosition)
+    {
+        if (!is_string($source) && !is_array($source)) {
+            throw new \InvalidArgumentException('Source should be string or array');
+        }
+
+        if (is_string($source)) {
+            $source = str_split($source);
+        }
+
+        foreach ($source as $block) {
+            $this[$memoryPosition] = $block;
+            $memoryPosition++;
+        }
+    }
+
     public function count()
     {
         return count($this->blocks);

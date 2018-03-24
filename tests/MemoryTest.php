@@ -6,6 +6,45 @@ use PHPUnit\Framework\TestCase;
 
 class MemoryTest extends TestCase
 {
+    public function testCopyArray()
+    {
+        $memory = new Memory(10);
+
+        $memory->copy(['foo', 'bar'], 3);
+
+        $this->assertEquals('foo', $memory[3]);
+        $this->assertEquals('bar', $memory[4]);
+    }
+
+    public function testCopyString()
+    {
+        $memory = new Memory(10);
+
+        $memory->copy('foo', 3);
+
+        $this->assertEquals('f', $memory[3]);
+        $this->assertEquals('o', $memory[4]);
+        $this->assertEquals('o', $memory[5]);
+    }
+
+    public function testCopyInvalidSourceType()
+    {
+        $this->expectException(\InvalidArgumentException::class);
+
+        $memory = new Memory(10);
+
+        $memory->copy(12345, 3);
+    }
+
+    public function testCopyOutOfRange()
+    {
+        $this->expectException(\OutOfRangeException::class);
+
+        $memory = new Memory(10);
+
+        $memory->copy('foo bar baz', 10);
+    }
+
     public function testCount()
     {
         $memory = new Memory(10);

@@ -11,7 +11,7 @@ class Memory implements ArrayAccess, Countable, IteratorAggregate
 {
     private $blocks;
 
-    public function __construct(int $numberOfBlocks, $defaultValue = null)
+    public function __construct(int $numberOfBlocks, $defaultValue = 0)
     {
         $this->blocks = array_fill(0, $numberOfBlocks, $defaultValue);
     }
